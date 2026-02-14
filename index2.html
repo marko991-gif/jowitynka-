@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walentynka 💖</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background: #ffe6f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #main-page, #second-page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #second-page {
+    display: none;
+    background: #ffccd9;
+  }
+
+  h1 {
+    color: #e60073;
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2em;
+  }
+
+  button {
+    padding: 20px 50px;
+    font-size: 24px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.2s ease;
+  }
+
+  #noBtn {
+    background: #ff3366;
+    color: white;
+  }
+
+  #yesBtn {
+    background: #ff99cc;
+    color: white;
+    opacity: 0.05;
+    font-size: 20px;
+  }
+
+  #second-page h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+  }
+
+  #second-page img {
+    width: 300px;
+    height: auto;
+  }
+</style>
+</head>
+<body>
+
+<div id="main-page">
+  <h1>Chcesz zostać moją walentynką? 💖</h1>
+  <button id="yesBtn">Tak</button>
+  <button id="noBtn">Nie</button>
+</div>
+
+<div id="second-page">
+  <h1>Tak! 💖 Jesteś moją Walentynką!</h1>
+  <img src="https://media.giphy.com/media/3oz8xKaR836UJOYeOc/giphy.gif" alt="Buziaki i kwiatki">
+</div>
+
+<script>
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const mainPage = document.getElementById('main-page');
+const secondPage = document.getElementById('second-page');
+
+let yesScale = 1;  // skala początkowa przycisku Tak
+let noClicks = 0;  // ile razy kliknięto Nie
+
+// kliknięcie "Nie"
+noBtn.addEventListener('click', () => {
+  noClicks++;
+  yesScale = yesScale * 4;  // powiększanie 4-krotnie
+  yesBtn.style.transform = `scale(${yesScale})`;
+});
+
+// kliknięcie "Tak"
+yesBtn.addEventListener('click', () => {
+  // powiększamy przycisk aż do 60% planszy
+  const targetWidth = window.innerWidth * 0.6;
+  const targetHeight = window.innerHeight * 0.6;
+
+  yesBtn.style.transition = 'all 1s ease';
+  yesBtn.style.width = targetWidth + 'px';
+  yesBtn.style.height = targetHeight + 'px';
+  yesBtn.style.fontSize = '3em';
+
+  setTimeout(() => {
+    mainPage.style.display = 'none';
+    secondPage.style.display = 'flex';
+  }, 1200);
+});
+</script>
+
+</body>
+</html>
